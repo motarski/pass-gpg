@@ -46,3 +46,21 @@ $ pass edit github/login
 ```
 $ export EDITOR="vim"
 ```
+
+### Exporting and deleting Public and secret key (Backup)
+
+```
+$ gpg --export ivan.thegreat@macbook.com > publicKey.asc
+$ gpg --export-secret-keys ivan.thegreat@macbook.com > secretKey.asc
+
+---Deleting Keys---
+
+$ gpg --delete-secret-keys ivan.thegreat@macbook.com
+$ gpg --delete-keys ivan.thegreat@macbook.com
+```
+
+### Importing Public and Secret keys (Restore from backup)
+```
+$ gpg --import publicKey.asc
+$ gpg --import secretKey.asc
+```
