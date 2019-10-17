@@ -39,8 +39,15 @@ $ pass insert github/login
 ```
 $ pass
 $ pass edit github/login
-# Will open editor
 ```
+
+### Set git upstream and push git changes via pass
+
+ ```
+ $ git branch --set-upstream-to=origin/master master
+ $ pass git pull
+ $ pass git push
+ ```
 
 ### Change default pass editor
 ```
