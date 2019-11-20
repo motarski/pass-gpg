@@ -6,11 +6,13 @@ $ gpg --full-gen-key
 # Use user ID ivan.thegreat@macbook.com
 ```
 
-### Create and encrypt file with generated key
+### Create and encrypt *(sign)* file with generated key
+
+- SCENARIO: Person 1 is you. You generated key pairs. You gave your public key to Person 2. To encrypt (sign) something Person 1 (you) must use secret key (private key) for encryption. That way person 2 can decrypt your message with your public key. Same goes for opposite.
 
 ```
 $ echo "This is secret" > secret.txt
-$ gpg -r ivan.thegreat@macbook.com -e secret.txt
+$ gpg --sign secret.txt
 ```
 
 ### Decrypt gpg encrypted file
