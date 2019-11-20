@@ -73,3 +73,22 @@ $ gpg --delete-keys ivan.thegreat@macbook.com
 $ gpg --import publicKey.asc
 $ gpg --import secretKey.asc
 ```
+
+# Generate Certificates *(CA and Client Certificates)*
+
+- CA Cert, Certifiate request and Signing the certificate
+```
+$ openssl genrsa -out ca.key 2048  # Generate Certifate Authority Private Key
+$ openssl req -new -key ca.key -subj "/CN=IVAN-CA" -out ca.csr   # Generate Certificate Signing request
+$ openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt   # Sign the certificate with ca.key
+```
+
+- Client Certificate (admin user)
+
+NOTE: To distiungish that the user is Admin user with admin privileges in kuberentes an OU with the "system.masters" MUST be added.
+
+```
+$ openssl genrsa -out admin.key 2048
+$ openssl req -new -key admin.key -subj "/CN=admin-user/O=system.masters" -out admin.csr   # Client with authenticate with name "admin-user"
+$ openssl x509 -req -in admin.csr -signkey ca.key -out admin.crt   # Sign the client certificate with the ca.key
+```
